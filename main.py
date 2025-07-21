@@ -10,10 +10,16 @@ from SRC.tts import speak_text
 
 # === Load .env and TTS credentials ===
 load_dotenv()
-GOOGLE_TTS_CREDENTIALS = os.getenv("GOOGLE_TTS_CREDENTIALS")
-if not GOOGLE_TTS_CREDENTIALS:
-    raise EnvironmentError("❌ GOOGLE_TTS_CREDENTIALS not found in .env file")
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = GOOGLE_TTS_CREDENTIALS
+
+# Get the path to the credentials JSON file from the .env file
+GOOGLE_TTS_CREDENTIALS_PATH = os.getenv("GOOGLE_TTS_CREDENTIALS")
+
+if not GOOGLE_TTS_CREDENTIALS_PATH or not os.path.exists(GOOGLE_TTS_CREDENTIALS_PATH):
+    raise EnvironmentError("❌ GOOGLE_TTS_CREDENTIALS not found or file does not exist.")
+
+# Set the environment variable so Google Cloud SDK can authenticate
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = GOOGLE_TTS_CREDENTIALS_PATH
+
 
 # === Fallback for off-topic questions ===
 OFF_TOPIC_RESPONSE = "I’m here to guide you through the Earth Dome and its context. Would you like to hear more about that?"
