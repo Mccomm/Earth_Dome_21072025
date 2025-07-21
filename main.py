@@ -12,9 +12,9 @@ from SRC.tts import speak_text
 load_dotenv()
 
 # Get the path to the credentials JSON file from the .env file
-GOOGLE_TTS_CREDENTIALS_PATH = os.getenv("GOOGLE_TTS_CREDENTIALS")
+GOOGLE_TTS_CREDENTIALS = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
 
-if not GOOGLE_TTS_CREDENTIALS_PATH or not os.path.exists(GOOGLE_TTS_CREDENTIALS_PATH):
+if not GOOGLE_TTS_CREDENTIALS or not os.path.exists(GOOGLE_TTS_CREDENTIALS):
     raise EnvironmentError("❌ GOOGLE_TTS_CREDENTIALS not found or file does not exist.")
 
 # Set the environment variable so Google Cloud SDK can authenticate
