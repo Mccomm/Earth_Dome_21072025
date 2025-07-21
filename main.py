@@ -18,7 +18,8 @@ if not GOOGLE_TTS_CREDENTIALS or not os.path.exists(GOOGLE_TTS_CREDENTIALS):
     raise EnvironmentError("❌ GOOGLE_TTS_CREDENTIALS not found or file does not exist.")
 
 # Set the environment variable so Google Cloud SDK can authenticate
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = GOOGLE_TTS_CREDENTIALS_PATH
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = GOOGLE_TTS_CREDENTIALS
+
 
 
 # === Fallback for off-topic questions ===
